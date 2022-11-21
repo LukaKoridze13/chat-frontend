@@ -1,0 +1,83 @@
+// GLOBAL
+.app {
+  width: 100%;
+  max-width: 1920px;
+}
+// From
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+$purple: #decffb;
+$red: #d64751;
+$green: #64c661;
+$blue: #ebf6ff;
+$lightgreen: #edffec;
+$lightpurple: #e9dffc;
+$lightred: #ffdee0;
+$darkpurple: #a87ff3;
+$darkgreen: #44ab42;
+$darkred: #83242a;
+.formContainer {
+  background-color: $blue;
+  form {
+    width: 90%;
+    max-width: 500px;
+    border-radius: 15px;
+    font-family: "Roboto";
+    h2 {
+      width: 100%;
+      font-family: "Roboto", sans-serif;
+    }
+
+    p {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      img {
+        width: 16px;
+        height: 16px;
+      }
+    }
+    input {
+      margin-top: 5px;
+    }
+  }
+  #valid {
+    border: 2px solid $green;
+    background-color: $lightgreen;
+    box-shadow: 0px 0px 3px 5px $green;
+    h2,
+    label {
+      color: $darkgreen;
+    }
+    button {
+      color: $lightgreen;
+      background-color: $darkgreen;
+    }
+    input {
+      border: 2px solid $green;
+      background-color: $lightgreen;
+    }
+  }
+  #inpValid {
+    label {
+      color: $darkgreen;
+    }
+    input {
+      border: 2px solid $green;
+      background-color: $lightgreen;
+      box-shadow: 0px 0px 1px 1px $green;
+    }
+  }
+  #inpNotvalid {
+    label {
+      color: $darkred;
+    }
+    input {
+      border: 2px solid $red;
+      background-color: $lightred;
+      box-shadow: 0px 0px 1px 1px $red;
+    }
+    p {
+      color: $darkred;
+    }
+  }
+}
