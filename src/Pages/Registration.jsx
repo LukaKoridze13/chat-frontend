@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import FormHeader from "../Components/FormHeader";
 import Input from "../Components/Input";
 import AuthButton from "../Components/AuthButton";
@@ -6,7 +6,8 @@ import Form from "../Components/Form";
 import { checkEmail, checkUsername } from "../Databases";
 import { sha256 } from "js-sha256";
 import axios from "axios";
-const { REACT_APP_API } = process.env;
+import { Link, useNavigate } from "react-router-dom";
+const { REACT_APP_API,REACT_APP_TOKEN } = process.env;
 export default function Registration() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -15,7 +16,7 @@ export default function Registration() {
   const [surnameError, setSurnameError] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const form = useRef();
-
+  let navigate = useNavigate()
   async function onSubmit(e) {
     e.preventDefault();
     let valid = 0;
@@ -88,6 +89,11 @@ export default function Registration() {
         .then((res) => [console.log(res)]);
     }
   }
+  useEffect(() => {
+    if (window.sessionStorage.getItem(REACT_APP_TOKEN) === 'true') {
+      navigate("/chat");
+    }
+  });
   return (
     <Form onSubmit={onSubmit} form={form}>
       <FormHeader title="REGISTRATION" />
@@ -134,6 +140,12 @@ export default function Registration() {
         error={repeatPasswordError}
       />
       <AuthButton text="REGISTER" />
+      <p className="italic decoration-slate-700">
+        If you already have an acount, try to
+        <Link to={"/login"} className="font-bold">Sign in </Link>
+        or
+        <Link to={"/recovery"} className="font-bold">Reset password</Link>
+      </p>
     </Form>
   );
 }

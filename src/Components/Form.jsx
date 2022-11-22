@@ -9,8 +9,6 @@ export default function Form(props) {
         onClick={props.onClick}
         onSubmit={props.onSubmit}
         ref={props.form}
-        autofill="off"
-        autoComplete="off"
         className="authorization flex gap-5 flex-col items-start p-5"
         id='valid'>
         {props.children}

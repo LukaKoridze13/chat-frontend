@@ -1,4 +1,5 @@
 import axios from "axios";
+import { sha256 } from "js-sha256";
 const { REACT_APP_API } = process.env;
 export const getUsers = async () => {
   let users;
@@ -31,3 +32,23 @@ export const checkUsername = async (username) => {
     return false;
   }
 };
+export const authentication = async (usernameemail, password) => {
+  let users = await getUsers();
+  let exists = false;
+  let userr;
+  users.forEach((user) => {
+    user.username === usernameemail && (exists = true);
+    user.email === usernameemail && (exists = true);
+    if (exists) {
+      userr = user;
+    }
+  });
+  if (exists && sha256(password) === userr.password) {
+    return "valid";
+  } else if (exists && sha256(password) !== userr.password) {
+    return "invalid";
+  } else {
+    return "notexists";
+  }
+};
+;
