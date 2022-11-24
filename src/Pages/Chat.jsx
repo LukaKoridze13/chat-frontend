@@ -22,6 +22,11 @@ export default function Chat() {
 
     form.current.children[0].value = "";
   }
+  function logout(){
+    window.sessionStorage.removeItem(REACT_APP_TOKEN + "Name");
+    window.sessionStorage.removeItem(REACT_APP_TOKEN);
+    navigate("/chat-frontend/login");
+  }
   useEffect(() => {
     if (!window.sessionStorage.getItem(REACT_APP_TOKEN)) {
       navigate("/chat-frontend/login");
@@ -87,6 +92,8 @@ export default function Chat() {
           />
           <AuthButton text="Send" />
         </form>
+      <button onClick={logout} className="logout">Sign Out</button>
+
       </div>
     </div>
   );
