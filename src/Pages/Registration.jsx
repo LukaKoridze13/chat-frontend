@@ -7,7 +7,7 @@ import { checkEmail, checkUsername } from "../Databases";
 import { sha256 } from "js-sha256";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-const { REACT_APP_API,REACT_APP_TOKEN } = process.env;
+const { REACT_APP_API, REACT_APP_TOKEN } = process.env;
 export default function Registration() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -16,7 +16,7 @@ export default function Registration() {
   const [surnameError, setSurnameError] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const form = useRef();
-  let navigate = useNavigate()
+  let navigate = useNavigate();
   async function onSubmit(e) {
     e.preventDefault();
     let valid = 0;
@@ -87,13 +87,14 @@ export default function Registration() {
       axios
         .post(`${REACT_APP_API}/users`, user)
         .then((res) => [console.log(res)]);
+      navigate("/chat-frontend/chat");
     }
   }
   useEffect(() => {
-    if (window.sessionStorage.getItem(REACT_APP_TOKEN) === 'true') {
-      navigate("/chat");
+    if (window.sessionStorage.getItem(REACT_APP_TOKEN) === "true") {
+      navigate("/chat-frontend/chat");
     }
-  });
+  }, [navigate]);
   return (
     <Form onSubmit={onSubmit} form={form}>
       <FormHeader title="REGISTRATION" />
@@ -142,9 +143,13 @@ export default function Registration() {
       <AuthButton text="REGISTER" />
       <p className="italic decoration-slate-700">
         If you already have an acount, try to
-        <Link to={"/login"} className="font-bold">Sign in </Link>
+        <Link to={"/login"} className="font-bold">
+          Sign in{" "}
+        </Link>
         or
-        <Link to={"/recovery"} className="font-bold">Reset password</Link>
+        <Link to={"/chat-frontend/recovery"} className="font-bold">
+          Reset password
+        </Link>
       </p>
     </Form>
   );

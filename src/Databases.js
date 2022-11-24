@@ -51,4 +51,23 @@ export const authentication = async (usernameemail, password) => {
     return "notexists";
   }
 };
-;
+export const findUser = async (usernameemail, password) => {
+  let users = await getUsers();
+  let exists = false;
+  let userr;
+  users.forEach((user) => {
+    user.username === usernameemail && (exists = true);
+    user.email === usernameemail && (exists = true);
+    if (exists) {
+      userr = user;
+    }
+  });
+  return userr.username;
+};
+export const getChat = async () => {
+  let chat;
+  await axios.get(`${REACT_APP_API}/chat`).then((res) => {
+    chat = res.data;
+  });
+  return chat;
+};

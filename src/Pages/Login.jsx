@@ -3,7 +3,7 @@ import FormHeader from "../Components/FormHeader";
 import Input from "../Components/Input";
 import AuthButton from "../Components/AuthButton";
 import Form from "../Components/Form";
-import { authentication } from "../Databases";
+import { authentication, findUser } from "../Databases";
 import { Link, useNavigate } from "react-router-dom";
 const { REACT_APP_TOKEN } = process.env;
 export default function Login() {
@@ -19,9 +19,11 @@ export default function Login() {
     setPasswordError("");
     setUsernameError("");
     valid = await authentication(usernameOrEmail, password);
+    let usernameOnly = await findUser(usernameOrEmail, password);
     if (valid === "valid") {
-      navigate("/chat");
+      navigate("/chat-frontend/chat");
       window.sessionStorage.setItem(REACT_APP_TOKEN, "true");
+      window.sessionStorage.setItem(REACT_APP_TOKEN + "Name", usernameOnly);
     } else if (valid === "invalid") {
       setPasswordError("Password is incorrect");
     } else {
@@ -29,10 +31,10 @@ export default function Login() {
     }
   }
   useEffect(() => {
-    if (window.sessionStorage.getItem(REACT_APP_TOKEN) === 'true') {
-      navigate("/chat");
+    if (window.sessionStorage.getItem(REACT_APP_TOKEN) === "true") {
+      navigate("/chat-frontend/chat");
     }
-  });
+  }, [navigate]);
   return (
     <Form onSubmit={onSubmit} form={form}>
       <FormHeader title="SIGN IN" />
@@ -53,7 +55,7 @@ export default function Login() {
       <AuthButton text="SIGN IN" />
       <p className="italic decoration-slate-700">
         If you don't already have an acount,
-        <Link to={"/registration"} className="font-bold">
+        <Link to={"/chat-frontend/registration"} className="font-bold">
           Register
         </Link>
       </p>

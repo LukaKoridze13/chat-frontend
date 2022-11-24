@@ -8,17 +8,19 @@ import "./index.css";
 import "./styles.scss";
 import Login from "./Pages/Login";
 import Chat from "./Pages/Chat";
+import Redirect from "./Pages/Redirect";
 const router = createBrowserRouter([
+  { path: "/chat-frontend/", element: <Redirect /> },
   {
-    path: "/registration",
+    path: "/chat-frontend/registration",
     element: <Registration />,
   },
   {
-    path: "/login",
+    path: "/chat-frontend/login",
     element: <Login />,
   },
   {
-    path: "/chat",
+    path: "/chat-frontend/chat",
     element: <Chat />,
   },
 ]);
