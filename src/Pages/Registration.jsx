@@ -3,7 +3,7 @@ import FormHeader from "../Components/FormHeader";
 import Input from "../Components/Input";
 import AuthButton from "../Components/AuthButton";
 import Form from "../Components/Form";
-import { checkEmail, checkUsername } from "../Databases";
+import { checkEmail, checkUsername, findUser } from "../Databases";
 import { sha256 } from "js-sha256";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -84,9 +84,10 @@ export default function Registration() {
     }
     if (valid === 6) {
       let user = { name, surname, username, email, password: sha256(password) };
-      axios
-        .post(`${REACT_APP_API}/users`, user)
-        .then((res) => [console.log(res)]);
+      axios.post(`${REACT_APP_API}/users`, user);
+      window.sessionStorage.setItem(REACT_APP_TOKEN, "true");
+      let usernameOnly = await findUser(username, password);
+      window.sessionStorage.setItem(REACT_APP_TOKEN + "Name", usernameOnly);
       navigate("/chat-frontend/chat");
     }
   }
