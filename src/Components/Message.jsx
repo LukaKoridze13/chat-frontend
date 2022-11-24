@@ -6,7 +6,7 @@ export default function Message(props) {
       <div style={{ width: "300px" }} className="message message-you">
         <p>{props.message}</p>
         <span>
-          {props.user} {props.time}
+          {props.user} &#x2022; {props.time}
         </span>
       </div>
     );
