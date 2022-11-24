@@ -19,10 +19,10 @@ export default function Login() {
     setPasswordError("");
     setUsernameError("");
     valid = await authentication(usernameOrEmail, password);
-    let usernameOnly = await findUser(usernameOrEmail, password);
     if (valid === "valid") {
       navigate("/chat-frontend/chat");
       window.sessionStorage.setItem(REACT_APP_TOKEN, "true");
+      let usernameOnly = await findUser(usernameOrEmail, password);
       window.sessionStorage.setItem(REACT_APP_TOKEN + "Name", usernameOnly);
     } else if (valid === "invalid") {
       setPasswordError("Password is incorrect");
