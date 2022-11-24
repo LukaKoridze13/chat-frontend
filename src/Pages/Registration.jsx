@@ -86,7 +86,7 @@ export default function Registration() {
       let user = { name, surname, username, email, password: sha256(password) };
       axios.post(`${REACT_APP_API}/users`, user);
       window.sessionStorage.setItem(REACT_APP_TOKEN, "true");
-      let usernameOnly = await findUser(username, password);
+      let usernameOnly = await findUser(username, sha256(password));
       window.sessionStorage.setItem(REACT_APP_TOKEN + "Name", usernameOnly);
       navigate("/chat-frontend/chat");
     }
