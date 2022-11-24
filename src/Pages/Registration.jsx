@@ -143,12 +143,8 @@ export default function Registration() {
       <AuthButton text="REGISTER" />
       <p className="italic decoration-slate-700">
         If you already have an acount, try to
-        <Link to={"/login"} className="font-bold">
-          Sign in{" "}
-        </Link>
-        or
-        <Link to={"/chat-frontend/recovery"} className="font-bold">
-          Reset password
+        <Link to={"/chat-frontend/login"} className="font-bold">
+          Sign in
         </Link>
       </p>
     </Form>

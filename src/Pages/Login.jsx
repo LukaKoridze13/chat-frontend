@@ -58,7 +58,11 @@ export default function Login() {
         <Link to={"/chat-frontend/registration"} className="font-bold">
           Register
         </Link>
+        
       </p>
+      <Link to={"/chat-frontend/recovery"} className="font-bold">
+          Forgot password?
+        </Link>
     </Form>
   );
 }

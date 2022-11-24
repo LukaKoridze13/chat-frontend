@@ -9,6 +9,7 @@ import "./styles.scss";
 import Login from "./Pages/Login";
 import Chat from "./Pages/Chat";
 import Redirect from "./Pages/Redirect";
+import Reset from "./Pages/Reset";
 const router = createBrowserRouter([
   { path: "/chat-frontend/", element: <Redirect /> },
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/chat-frontend/chat",
     element: <Chat />,
+  },
+  {
+    path: "/chat-frontend/recovery",
+    element: <Reset />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
