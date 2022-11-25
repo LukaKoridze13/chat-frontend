@@ -3,7 +3,7 @@ import FormHeader from "../Components/FormHeader";
 import Input from "../Components/Input";
 import AuthButton from "../Components/AuthButton";
 import Form from "../Components/Form";
-import { authentication, findUser } from "../Databases";
+import { authentication } from "../Databases";
 import { Link, useNavigate } from "react-router-dom";
 const { REACT_APP_TOKEN } = process.env;
 export default function Login() {
@@ -14,15 +14,14 @@ export default function Login() {
   async function onSubmit(e) {
     e.preventDefault();
     let valid;
-    let usernameOrEmail = form.current.children[1].children[1].value;
+    let username = form.current.children[1].children[1].value;
     let password = form.current.children[2].children[1].value;
     setPasswordError("");
     setUsernameError("");
-    valid = await authentication(usernameOrEmail, password);
+    valid = await authentication(username, password);
     if (valid === "valid") {
       window.sessionStorage.setItem(REACT_APP_TOKEN, "true");
-      let usernameOnly = await findUser(usernameOrEmail, password);
-      window.sessionStorage.setItem(REACT_APP_TOKEN + "Name", usernameOnly);
+      window.sessionStorage.setItem(REACT_APP_TOKEN + "Name", username);
       navigate("/chat-frontend/chat");
     } else if (valid === "invalid") {
       setPasswordError("Password is incorrect");
@@ -39,8 +38,8 @@ export default function Login() {
     <Form onSubmit={onSubmit} form={form}>
       <FormHeader title="SIGN IN" />
       <Input
-        placeholder="Enter your username or email"
-        label="Username / Email"
+        placeholder="Enter your username"
+        label="Username"
         id="name"
         type="text"
         error={usernameError}
@@ -58,11 +57,10 @@ export default function Login() {
         <Link to={"/chat-frontend/registration"} className="font-bold">
           Register
         </Link>
-        
       </p>
       <Link to={"/chat-frontend/recovery"} className="font-bold">
-          Forgot password?
-        </Link>
+        Forgot password?
+      </Link>
     </Form>
   );
 }

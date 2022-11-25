@@ -13,7 +13,10 @@ export default function Message(props) {
   } else {
     return (
       <div style={{ width: "300px" }} className="message">
-        {props.message}
+        <p>{props.message}</p>
+        <span>
+          {props.user} &#x2022; {props.time}
+        </span>
       </div>
     );
   }

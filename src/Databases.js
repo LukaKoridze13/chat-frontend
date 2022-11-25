@@ -32,37 +32,26 @@ export const checkUsername = async (username) => {
     return false;
   }
 };
-export const authentication = async (usernameemail, password) => {
+export const authentication = async (username, password) => {
   let users = await getUsers();
-  let exists = false;
-  let userr;
+  let userr = "none";
   users.forEach((user) => {
-    user.username === usernameemail && (exists = true);
-    user.email === usernameemail && (exists = true);
-    if (exists) {
+    if (user.username === username && user.password === sha256(password)) {
       userr = user;
+    } else if (
+      user.username === username &&
+      user.password !== sha256(password)
+    ) {
+      userr = "wrong";
     }
   });
-  if (exists && sha256(password) === userr.password) {
-    return "valid";
-  } else if (exists && sha256(password) !== userr.password) {
+  if (userr === "none") {
+    return "notexists";
+  } else if (userr === "wrong") {
     return "invalid";
   } else {
-    return "notexists";
+    return "valid";
   }
-};
-export const findUser = async (usernameemail, password) => {
-  let users = await getUsers();
-  let exists = false;
-  let userr;
-  users.forEach((user) => {
-    user.username === usernameemail && (exists = true);
-    user.email === usernameemail && (exists = true);
-    if (exists) {
-      userr = user;
-    }
-  });
-  return userr.username;
 };
 export const getChat = async () => {
   let chat;
