@@ -66,7 +66,7 @@ export default function Login() {
         <ReactLoading type={"spin"} color={"green"} height={40} width={40} />
       </div>
       <p className="italic decoration-slate-700">
-        If you don't already have an acount,
+        If you don't have an acount,
         <Link to={"/chat-frontend/registration"} className="font-bold">
           Register
         </Link>
