@@ -120,6 +120,9 @@ export default function Chat() {
               if (now.getDate() > date.getDate()) {
                 time = date.getDate() + " " + getMonthString(date.getMonth());
               }
+              if (now.getMonth() > date.getMonth()) {
+                time = date.getDate() + " " + getMonthString(date.getMonth());
+              }
               if (now.getFullYear() > date.getFullYear()) {
                 time = date.getFullYear();
               }
