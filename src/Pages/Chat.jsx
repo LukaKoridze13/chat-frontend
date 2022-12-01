@@ -133,6 +133,7 @@ export default function Chat() {
                   time={time}
                   you={you}
                   key={msg._id}
+                  id={msg._id}
                 />
               );
             })}

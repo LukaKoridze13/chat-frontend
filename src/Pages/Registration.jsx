@@ -3,7 +3,7 @@ import FormHeader from "../Components/FormHeader";
 import Input from "../Components/Input";
 import AuthButton from "../Components/AuthButton";
 import Form from "../Components/Form";
-import { checkEmail, checkUsername, findUser } from "../Databases";
+import { checkEmail, checkUsername } from "../Databases";
 import { sha256 } from "js-sha256";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";

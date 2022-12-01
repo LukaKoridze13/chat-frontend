@@ -1,6 +1,10 @@
 import React from "react";
-
+import { deleteMessage } from "../Databases";
+import Delete from "../Images/delete.svg";
 export default function Message(props) {
+  async function deleteM() {
+    await deleteMessage(props.id);
+  }
   if (props.you) {
     return (
       <div style={{ width: "300px" }} className="message message-you">
@@ -8,6 +12,7 @@ export default function Message(props) {
         <span>
           {props.user} &#x2022; {props.time}
         </span>
+        <img onClick={deleteM} src={Delete} alt="Delete" className="delete" />
       </div>
     );
   } else {
