@@ -77,17 +77,17 @@ export default function Chat() {
     }
   }, [navigate]);
   useEffect(() => {
+    console.log("Test")
     let up = setInterval(() => {
+      axios.get(`${REACT_APP_API}/chat`).then((res) => {
+        console.log(res.data)
+        setChat(res.data);
+      });
       setUpdate(!update);
     }, 1000);
     return () => {
       clearInterval(up);
     };
-  });
-  useEffect(() => {
-    axios.get(`${REACT_APP_API}/chat`).then((res) => {
-      setChat(res.data);
-    });
   });
   useEffect(() => {
     if (chatr.current !== undefined) {

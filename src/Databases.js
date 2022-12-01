@@ -60,6 +60,6 @@ export const getChat = async () => {
   });
   return chat;
 };
-export const deleteMessage = async (username, date) => {
-  await axios.delete(`${REACT_APP_API}/chat`, { data: { username: username, date:date } });
+export const deleteMessage =  (username, date) => {
+ axios.delete(`${REACT_APP_API}/chat`, { data: { username: username, date:date } });
 };
