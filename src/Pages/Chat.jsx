@@ -134,6 +134,7 @@ export default function Chat() {
                   you={you}
                   key={msg._id}
                   id={msg._id}
+                  date={msg.date}
                 />
               );
             })}
