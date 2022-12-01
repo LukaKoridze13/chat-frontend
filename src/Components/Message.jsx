@@ -3,7 +3,7 @@ import { deleteMessage } from "../Databases";
 import Delete from "../Images/delete.svg";
 export default function Message(props) {
   async function deleteM() {
-    await deleteMessage(props.user. props.date);
+    await deleteMessage(props.user, props.date);
   }
   if (props.you) {
     return (
