@@ -77,10 +77,8 @@ export default function Chat() {
     }
   }, [navigate]);
   useEffect(() => {
-    console.log("Test")
     let up = setInterval(() => {
       axios.get(`${REACT_APP_API}/chat`).then((res) => {
-        console.log(res.data)
         setChat(res.data);
       });
       setUpdate(!update);
